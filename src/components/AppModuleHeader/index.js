@@ -29,8 +29,9 @@ class AppModuleHeader extends React.Component {
     });
   }
 
-  render() {
+  render() {  
     const {placeholder, onChange, value, user, notification, apps} = this.props;
+    console.log("appmodule header: ", this.props)
 
     return (
       <div className="module-box-header-inner">

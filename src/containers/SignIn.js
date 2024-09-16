@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React, {useState, useEffect} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
@@ -17,32 +17,42 @@ import {
   userTwitterSignIn
 } from 'actions/Auth';
 
-class SignIn extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      email: 'demo@example.com',
-      password: 'demo#123'
-    }
-  }
 
-  componentDidUpdate() {
-    if (this.props.showMessage) {
-      setTimeout(() => {
-        this.props.hideMessage();
-      }, 100);
+function SignIn (props){
+  const {showMessage, loader, alertMessage, authUser} = props;
+  const [email,setEmail] = useState('fatima.hassan@tkxel.io');
+  const [password, setPassword] =useState('xyzqr23');
+  const history=useHistory();
+  useEffect(()=>{
+    if(props.authUser===true){
+      history.push('/techstore');
     }
-    if (this.props.authUser !== null) {
-      this.props.history.push('/');
-    }
-  }
 
-  render() {
-    const {
-      email,
-      password
-    } = this.state;
-    const {showMessage, loader, alertMessage} = this.props;
+  })
+  // useEffect(() => {
+  //   console.log("showMessage: ",alertMessage)
+  //   if (showMessage) {
+  //     NotificationManager.error(alertMessage);
+  //     props.hideMessage();
+  //   }
+  //   console.log("authUser:",authUser)
+
+  // }, [authUser, navigate, showMessage, alertMessage]);
+
+  // useEffect(()=>{
+  //   if (props.showMessage) {
+  //     setTimeout(() => {
+  //       props.hideMessage();
+  //     }, 100);
+  //   }
+  //   if (props.authUser !== null) {
+  //     props.history.push('/');
+  //   }
+  // },[props])
+  const handleSignIn=()=>{
+    props.userSignIn({email, password});
+    props.showAuthLoader();
+  }
     return (
       <div
         className="app-login-container d-flex justify-content-center align-items-center animated slideInUpTiny animation-duration-3">
@@ -65,7 +75,7 @@ class SignIn extends React.Component {
                   <TextField
                     label={<IntlMessages id="appModule.email"/>}
                     fullWidth
-                    onChange={(event) => this.setState({email: event.target.value})}
+                    onChange={(event) => setEmail(event.target.value)}
                     defaultValue={email}
                     margin="normal"
                     className="mt-1 my-sm-3"
@@ -74,17 +84,14 @@ class SignIn extends React.Component {
                     type="password"
                     label={<IntlMessages id="appModule.password"/>}
                     fullWidth
-                    onChange={(event) => this.setState({password: event.target.value})}
+                    onChange={(event) => setPassword(event.target.value)}
                     defaultValue={password}
                     margin="normal"
                     className="mt-1 my-sm-3"
                   />
 
                   <div className="mb-3 d-flex align-items-center justify-content-between">
-                    <Button onClick={() => {
-                      this.props.showAuthLoader();
-                      this.props.userSignIn({email, password});
-                    }} variant="contained" color="primary">
+                    <Button onClick={handleSignIn} variant="contained" color="primary">
                       <IntlMessages id="appModule.signIn"/>
                     </Button>
 
@@ -100,8 +107,8 @@ class SignIn extends React.Component {
                       <li>
                         <IconButton className="icon"
                                     onClick={() => {
-                                      this.props.showAuthLoader();
-                                      this.props.userFacebookSignIn();
+                                    //   props.showAuthLoader();
+                                    //   props.userFacebookSignIn();
                                     }}>
                           <i className="zmdi zmdi-facebook"/>
                         </IconButton>
@@ -110,8 +117,8 @@ class SignIn extends React.Component {
                       <li>
                         <IconButton className="icon"
                                     onClick={() => {
-                                      this.props.showAuthLoader();
-                                      this.props.userTwitterSignIn();
+                                      // props.showAuthLoader();
+                                      // props.userTwitterSignIn();
                                     }}>
                           <i className="zmdi zmdi-twitter"/>
                         </IconButton>
@@ -120,8 +127,8 @@ class SignIn extends React.Component {
                       <li>
                         <IconButton className="icon"
                                     onClick={() => {
-                                      this.props.showAuthLoader();
-                                      this.props.userGoogleSignIn();
+                                      // props.showAuthLoader();
+                                      // props.userGoogleSignIn();
 
                                     }}>
                           <i className="zmdi zmdi-google-plus"/>
@@ -131,8 +138,8 @@ class SignIn extends React.Component {
                       <li>
                         <IconButton className="icon"
                                     onClick={() => {
-                                      this.props.showAuthLoader();
-                                      this.props.userGithubSignIn();
+                                      // props.showAuthLoader();
+                                      // props.userGithubSignIn();
                                     }}>
                           <i className="zmdi zmdi-github"/>
                         </IconButton>
@@ -152,11 +159,11 @@ class SignIn extends React.Component {
             <CircularProgress/>
           </div>
         }
-        {showMessage && NotificationManager.error(alertMessage)}
+        {/* {showMessage && NotificationManager.error(alertMessage)} */}
         <NotificationContainer/>
       </div>
     );
-  }
+
 }
 
 const mapStateToProps = ({auth}) => {

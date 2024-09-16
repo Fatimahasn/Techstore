@@ -137,3 +137,12 @@ export const SET_CURRENT_TODO_NULL = 'set_current_todo_null';
 export const REMOVE_LABEL = 'remove_label';
 export const UPDATE_SEARCH = 'update_search';
 
+// Products
+export const GET_PRODUCTS='get_products';
+export const GET_PRODUCTS_LIST_SUCCESS='get_products_list_success'
+export const GET_PRODUCTS_LIST_FAILURE='get_products_list_failure';
+export const UPDATE_PRODUCT='update_product';
+
+export const GET_CATEGORIES='get_categories';
+export const GET_CATEGORIES_SUCCESS='get_categories_success';
+export const GET_CATEGORIES_FAILURE='get_categories_failure';

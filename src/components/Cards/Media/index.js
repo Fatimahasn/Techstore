@@ -1,8 +1,8 @@
 import React from 'react';
-import Card, {CardActions, CardContent, CardMedia} from '@material-ui/core/Card';
+import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import { CardActions,CardContent, CardMedia } from '@material-ui/core';
 
 function MediaCard() {
   return (

@@ -27,16 +27,16 @@ class SignUp extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    if (this.props.showMessage) {
-      setTimeout(() => {
-        this.props.hideMessage();
-      }, 3000);
-    }
-    if (this.props.authUser !== null) {
-      this.props.history.push('/');
-    }
-  }
+  // componentDidUpdate() {
+  //   if (this.props.showMessage) {
+  //     setTimeout(() => {
+  //       this.props.hideMessage();
+  //     }, 3000);
+  //   }
+  //   if (this.props.authUser !== null) {
+  //     this.props.history.push('/');
+  //   }
+  // }
 
   render() {
     const {

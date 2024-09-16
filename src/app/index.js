@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Header from 'components/Header/index';
 import Sidebar from 'containers/SideNav/index';
 import Footer from 'components/Footer';
-import Tour from '../components/Tour/index';
+// import Tour from '../components/Tour/index';l
 import {
   ABOVE_THE_HEADER,
   BELOW_THE_HEADER,
@@ -32,7 +32,7 @@ class App extends React.Component {
 
     return (
       <div className={`app-container ${drawerStyle}`}>
-        <Tour/>
+        {/* <Tour/> */}
 
         <Sidebar/>
         <div className="app-main-container">
@@ -48,8 +48,8 @@ class App extends React.Component {
           <main className="app-main-content-wrapper">
             <div className="app-main-content">
               <Switch>
-                  <Route path={`${match.url}/sample-page`}
-                         component={asyncComponent(() => import('./routes/SamplePage'))}/>
+                  <Route path={`${match.url}/home`}
+                         component={asyncComponent(() => import('./routes/Home'))}/>
                 <Route component={asyncComponent(() => import('components/Error404'))}/>
               </Switch>
             </div>

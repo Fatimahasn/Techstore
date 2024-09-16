@@ -3,8 +3,9 @@ import Button from '@material-ui/core/Button';
 import StarRatingComponent from 'react-star-rating-component';
 import IntlMessages from 'util/IntlMessages';
 
-const ProductGridItem = ({product}) => {
-  const {thumb, name, price, mrp, offer, variant, rating,description} = product;
+const ProductGridItem = (item) => {
+  const { name, original_price, discount_value, rating, description} = item.product;
+  console.log("productGridItem: ",item.product)
   return (
     <div className="col-xl-3 col-md-4 col-sm-6 col-12">
       <div className="card product-item">
@@ -12,7 +13,7 @@ const ProductGridItem = ({product}) => {
           <div className="card-image">
             <div className="grid-thumb-equal">
               <span className="grid-thumb-cover jr-link">
-                <img alt="Remy Sharp" src={thumb}/>
+                {/* <img alt="Remy Sharp" src={thumb}/> */}
               </span>
             </div>
           </div>
@@ -20,14 +21,14 @@ const ProductGridItem = ({product}) => {
         <div className="card-body">
           <div className="product-details">
             <h3 className="card-title fw-regular">{name}
-              <small className="text-grey text-darken-2">{", " + variant}</small>
+              {/* <small className="text-grey text-darken-2">{", " + variant}</small> */}
             </h3>
             <div className="d-flex ">
-              <h3 className="card-title">{price} </h3>
-              <h5 className="text-muted px-2">
+              <h3 className="card-title">{original_price} </h3>
+              {/* <h5 className="text-muted px-2">
                 <del>{mrp}</del>
-              </h5>
-              <h5 className="text-success">{offer} off</h5>
+              </h5> */}
+              <h5 className="text-success">{discount_value}% off</h5>
             </div>
             <div className="d-flex flex-row">
               <StarRatingComponent

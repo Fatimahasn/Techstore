@@ -2,6 +2,7 @@ import React from "react";
 import Widget from "components/Widget/index";
 
 const Photos = ({photoList}) => {
+  console.log("photoList: ",photoList)
 
   return (
     <Widget title="Photos" styleName="jr-card-profile-sm">
@@ -9,7 +10,7 @@ const Photos = ({photoList}) => {
         <ul className="jr-gallery-list">
           {photoList.map((photo, index) =>
             <li key={index}>
-              <img alt="..." src={photo.image}/>
+              <img alt="..." src={photo.image_url}/>
             </li>
           )}
         </ul>

@@ -18,7 +18,8 @@ const INIT_STATE = {
     alertMessage: '',
     showMessage: false,
     initURL: '',
-    authUser: localStorage.getItem('user_id'),
+    authUser: false,
+    token: localStorage.getItem('token'),
 };
 
 
@@ -32,10 +33,12 @@ export default (state = INIT_STATE, action) => {
             }
         }
         case SIGNIN_USER_SUCCESS: {
+            console.log(action)
+            let auth=true;
             return {
                 ...state,
                 loader: false,
-                authUser: action.payload
+                authUser: action.payload,
             }
         }
         case INIT_URL: {
@@ -47,7 +50,7 @@ export default (state = INIT_STATE, action) => {
         case SIGNOUT_USER_SUCCESS: {
             return {
                 ...state,
-                authUser: null,
+                authUser: false,
                 initURL: '/app/dashboard/default',
                 loader: false
             }

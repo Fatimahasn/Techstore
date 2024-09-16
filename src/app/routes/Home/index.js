@@ -2,7 +2,7 @@ import React from 'react';
 import ContainerHeader from 'components/ContainerHeader/index';
 import IntlMessages from 'util/IntlMessages';
 
-class SamplePage extends React.Component {
+class Home extends React.Component {
 
   render() {
     return (
@@ -17,4 +17,4 @@ class SamplePage extends React.Component {
   }
 }
 
-export default SamplePage;
+export default Home;
