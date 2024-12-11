@@ -18,28 +18,21 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 function App(props){
   const {location, locale, authUser, initURL, isDirectionRTL} = props;
- 
+
+  useEffect(()=>{
+    window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+    if (initURL === '') {
+      props.setInitUrl(location.pathname);
+    }
+
+  },[initURL, location.pathname, props])
   
-
-
-  // useEffect(()=>{
-  //   window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-  //   if (props.initURL === '') {
-  //     props.setInitUrl(props.history.location.pathname);
-  //   }
-
-  // },[props])
-  
-
-  // if (location.pathname === '/') {
-  //   if (authUser === false) {
-  //     return ( <Redirect to={'/signin'}/> );
-  //   } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
-  //     return ( <Redirect to={'/app/home'}/> );
-  //   } else {
-  //     return ( <Redirect to={initURL}/> );
-  //   }
-  // }
+  if (location.pathname === '/') {
+    if (!authUser) {
+      return <Redirect to="/signin" />;
+    }
+    return <Redirect to="/techstore/home" />;
+  }
   const applyTheme = createTheme(defaultTheme);
 
   if (isDirectionRTL) {
